@@ -75,11 +75,16 @@ section {
 }
 
 .navbar__menu .menu__link {
-    display: block;
+    display: inline-block;
     padding: 1em;
     font-weight: bold;
     text-decoration: none;
     color: #000;
+}
+
+.navbar__menu .active_a {
+    background-color: #000;
+    color:#fff;
 }
 
 .navbar__menu .menu__link:hover {
@@ -121,6 +126,19 @@ section {
         max-width: 50em;
         padding: 4em;
     }
+}
+
+.collapsible{
+    cursor: pointer;
+}
+
+.active, .collapsible:hover {
+    background-color: rgb(31, 56, 56);
+}
+
+.content {
+    display: none;
+    overflow: hidden;
 }
 
 section:nth-of-type(even) .landing__container {
