@@ -33,6 +33,7 @@ function createNewElements(){
         // Add href nad class attribute to <a> element
         anchor.setAttribute("class", "menu__link");
         anchor.setAttribute("href", "#section"+i);
+        anchor.setAttribute("id", "ss"+i);
     
         // Add id to each list element to scroll to section on link click - next part
         listitems.setAttribute("id", "s"+i);
@@ -67,11 +68,10 @@ document.addEventListener('click', function(event){
 
         // Used event.target.id to check the current clicked item's id
         // Each list has an id.
-        if(event.target.id === "s"+i){
-            console.log("s" + i + " clicked.");
-
-            // This method scrolls an element into the visible area of the browser window.
-            sec.scrollIntoView();
+        if(event.target.id === "s"+i || event.target.id === "ss"+i){
+            // scrollIntoView : this method scrolls an element into the visible area of the browser window.
+            // When a link is clicked it has a scroll behavior to the section.
+            sec.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
         }
     }
 });
@@ -85,7 +85,7 @@ const anchors = document.getElementsByTagName('a');
 
 function makeActive(){
     for(let n = 0; n < sections.length; n++){
-        const box = sections[n].getBoundingClientRect();
+        const box = sections[n].getBoundingClientRect(); // getBoundingClientRect() : to get accurate viewport of the page.
 
         if(box.top <= 150 && box.bottom >= 150){
             sections[n].classList.add("active");
@@ -158,8 +158,8 @@ for(j = 0; j < sections.length; j++){
     secondP+=2;
 }
 
-var coll = document.getElementsByClassName("collapsible");
-var k;
+const coll = document.getElementsByClassName("collapsible");
+let k;
 
 for (k = 0; k < coll.length; k++) {
   
@@ -167,7 +167,7 @@ for (k = 0; k < coll.length; k++) {
 
         this.classList.toggle("active");
 
-        var content = this.nextElementSibling;
+        const content = this.nextElementSibling;
         if (content.style.display === "none") {
             content.style.display = "block";
         } else {
