@@ -132,12 +132,12 @@ section {
     cursor: pointer;
 }
 
-.active, .collapsible:hover {
+.collapsible:hover {
     background-color: rgb(31, 56, 56);
 }
 
 .content {
-    display: none;
+    display: initial;
     overflow: hidden;
 }
 
@@ -145,6 +145,26 @@ section:nth-of-type(even) .landing__container {
     margin-right: 0;
     margin-left: auto;
     text-align: right; 
+}
+
+#topBtn {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 20px; /* Place this at the bottom of the page */
+    right: 30px; /* 30px from the right */
+    background-color:red;
+    cursor: pointer;
+    z-index: 99;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+#topBtn:hover {
+    background-color: maroon;
 }
 
 /* Background Circles */

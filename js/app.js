@@ -13,13 +13,14 @@
  * 
 */
 
+
 /*
  Objective: Build menu.
  
 */
 const listContainer = document.getElementById('navbar__list');
 const sections = document.querySelectorAll('section');
-let i = 0;
+let i;
 
 function createNewElements(){
     for(i = 1; i <= sections.length; i++){
@@ -41,6 +42,7 @@ function createNewElements(){
     }
 }
 
+
 /*
  Objective: Specify that the event is only handled once. 
  This is achieved by passing the property once to the object. 
@@ -60,7 +62,7 @@ document.addEventListener('click', function(event){
     // Iterate the number of sections & menu items
     for(let i = 0; i <= sections.length; i++){
 
-        // Declare a variable for each section with its id.
+        // Variable for each section with its id.
         const sec = document.getElementById('section'+i);
 
         // Used event.target.id to check the current clicked item's id
@@ -74,22 +76,23 @@ document.addEventListener('click', function(event){
     }
 });
 
+
 /*
  Objective: Set sections as active - add class 'active' to section when near top of viewport.
 
  */
-const anchors = document.querySelectorAll('a');
-let num = 0;
+const anchors = document.getElementsByTagName('a');
+
 function makeActive(){
-    for(num = 0; num <= sections.length; num++){
-        const box = sections[num].getBoundingClientRect();
+    for(let n = 0; n < sections.length; n++){
+        const box = sections[n].getBoundingClientRect();
 
         if(box.top <= 150 && box.bottom >= 150){
-            sections[num].classList.add("active");
-            anchors[num].classList.add("active_a");
+            sections[n].classList.add("active");
+            anchors[n].classList.add("active_a");
         }else{
-            sections[num].classList.remove("active");
-            anchors[num].classList.remove("active_a");
+            sections[n].classList.remove("active");
+            anchors[n].classList.remove("active_a");
         }
     }
 }
@@ -98,19 +101,28 @@ document.addEventListener('scroll', function(){
     makeActive();
 });
 
+
 /*
  Objective: Hide fixed navigation bar while not scrolling (it should still be present on page load).
  
 */
+const menu = document.querySelector(".page__header"); 
+let timer = null; // default value
 
+document.addEventListener("scroll", function(){
 
+    if (timer !== null){
+        clearTimeout(timer);
+        menu.style.display = "block";
+    }
 
+    // As the value of timer is null by default, this line will run first.
+    timer = setTimeout(hide, 5000); // after 5 seconds no scrolling, hide navigation bar
 
-
-
-
-
-
+    function hide(){
+        menu.style.display = "none";
+    }
+});
 
 
 /*
@@ -156,10 +168,34 @@ for (k = 0; k < coll.length; k++) {
         this.classList.toggle("active");
 
         var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-        content.style.display = "none";
+        if (content.style.display === "none") {
+            content.style.display = "block";
         } else {
-        content.style.display = "block";
+            content.style.display = "none";
         }
   });
+}
+
+
+/*
+ Objective: Add a scroll to the top button on the page that’s only visible when the user scrolls below the fold of the page.
+
+*/
+const topButton = document.getElementById('topBtn');
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 2200 || document.documentElement.scrollTop > 2200) {
+    topButton.style.display = "block";
+  } else {
+    topButton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
