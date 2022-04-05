@@ -117,7 +117,7 @@ document.addEventListener("scroll", function(){
     }
 
     // As the value of timer is null by default, this line will run first.
-    timer = setTimeout(hide, 5000); // after 5 seconds no scrolling, hide navigation bar
+    timer = setTimeout(hide, 2000); // after 2 seconds no scrolling, hide navigation bar
 
     function hide(){
         menu.style.display = "none";
