@@ -14,9 +14,8 @@
 */
 
 
-/*
- Objective: Build menu.
- 
+/** 
+* @description Build menu.
 */
 const listContainer = document.getElementById('navbar__list');
 const sections = document.querySelectorAll('section');
@@ -44,12 +43,11 @@ function createNewElements(){
 }
 
 
-/*
- Objective: Specify that the event is only handled once. 
- This is achieved by passing the property once to the object. 
- If we set once to true, the event will only be fired once.
- 
- */
+/** 
+* @description Specify that the event is only handled once. 
+* This is achieved by passing the property once to the object. 
+* If we set once to true, the event will only be fired once.
+*/
 document.addEventListener('mousemove', function() {
     createNewElements();
 },{once : true});
@@ -77,10 +75,9 @@ document.addEventListener('click', function(event){
 });
 
 
-/*
- Objective: Set sections as active - add class 'active' to section when near top of viewport.
-
- */
+/** 
+* @description Set sections as active - add class 'active' to section when near top of viewport.
+*/
 const anchors = document.getElementsByTagName('a');
 
 function makeActive(){
@@ -102,9 +99,8 @@ document.addEventListener('scroll', function(){
 });
 
 
-/*
- Objective: Hide fixed navigation bar while not scrolling (it should still be present on page load).
- 
+/** 
+* @description Hide fixed navigation bar while not scrolling (it should still be present on page load).
 */
 const menu = document.querySelector(".page__header"); 
 let timer = null; // default value
@@ -125,9 +121,8 @@ document.addEventListener("scroll", function(){
 });
 
 
-/*
- Objective: Make sections collapsible.
-
+/** 
+* @description Make sections collapsible.
 */
 const sectionBox = document.getElementsByClassName('landing__container');
 const sectionHeading = document.querySelectorAll('h2');
@@ -165,6 +160,7 @@ for (k = 0; k < coll.length; k++) {
   
     coll[k].addEventListener("click", function() {
 
+        // Toggle between two classes ('collapsible' and 'active') for an element.
         this.classList.toggle("active");
 
         const content = this.nextElementSibling;
@@ -177,16 +173,15 @@ for (k = 0; k < coll.length; k++) {
 }
 
 
-/*
- Objective: Add a scroll to the top button on the page that’s only visible when the user scrolls below the fold of the page.
-
+/** 
+* @description Add a scroll to the top button on the page that’s only visible when the user scrolls below the fold of the page.
 */
 const topButton = document.getElementById('topBtn');
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
+  // When the user scrolls down 20px from the top of the document, show the button
   if (document.body.scrollTop > 2200 || document.documentElement.scrollTop > 2200) {
     topButton.style.display = "block";
   } else {
@@ -194,7 +189,9 @@ function scrollFunction() {
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
+/** 
+* @description When the user clicks on the button, scroll to the top of the document
+*/
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
